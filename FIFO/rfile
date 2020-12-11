@@ -1,0 +1,33 @@
+n = int(input())
+m = []
+s = -1
+last_s = -1
+for i in range(n):
+    m.append(list(map(int, input().split())))
+    s = sum(m[i])
+    if last_s == -1:
+        last_s = s
+    elif last_s != s:
+        last_s = -2
+    
+if last_s == -2:
+    print("NO")
+    exit(0)
+
+for i in range(n):
+    s = 0
+    for j in range(n):
+        s += m[j][i]
+    if s != last_s:
+        print("NO")
+        exit(0)
+
+s2 = 0
+s = 0
+for i in range(n):
+    s += m[i][i]
+    s2 += m[i][n - 1 - i]
+if s != s2 or s != last_s:
+    print("NO")
+    exit(0)
+print("YES")
